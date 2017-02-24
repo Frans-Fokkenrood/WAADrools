@@ -1,0 +1,14 @@
+Regel "XXXXXX" in "WetAanpassingArbeidsduur" luidt:
+
+	.
+
+
+Testcase "XXXXXX_TC" in "WetAanpassingArbeidsduur" omvat de volgende testgevallen:
+
+	- "testcase_001" met als invoer:
+		waardoor de regel zal vuren
+		
+	- "testcase_002" met als invoer:
+		waardoor de regel niet zal vuren
+	.
+

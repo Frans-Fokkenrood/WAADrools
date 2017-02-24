@@ -1,0 +1,9 @@
+package com.fokkenrood.WetAanpassingArbeidsduur
+
+import com.fokkenrood.drools.Aaaaaa;
+import com.fokkenrood.drools.Bbbbbb;
+
+rule "XXXXXX"
+  when
+  then
+end
