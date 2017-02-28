@@ -1,3 +1,4 @@
+
 Regel "XXXXXX" in "WetAanpassingArbeidsduur" luidt:
 
 	.
@@ -6,9 +7,40 @@ Regel "XXXXXX" in "WetAanpassingArbeidsduur" luidt:
 Testcase "XXXXXX_TC" in "WetAanpassingArbeidsduur" omvat de volgende testgevallen:
 
 	- "testcase_001" met als invoer:
+		een werkgever 
+			waarbij werkgeversidentificatie wordt gesteld op 2
+			waarbij naam wordt gesteld op "Philips"
+			waarbij adres wordt gesteld op "Jan ten havestraat"
+			waarbij huisnummer wordt gesteld op "12"
+			waarbij postcode wordt gesteld op "1095 TK"
+			waarbij aantal werknemers wordt gesteld op 12
+			waarbij peildatum wordt gesteld op 01-01-2017
+			waarbij militairen in dienst wordt gesteld op nee
+		een werknemer
+			waarbij werknemersidentificatie wordt gesteld op 1
+			waarbij burgerservicenummer wordt gesteld op "111111111"
+			waarbij voornamen wordt gesteld op "Jan"
+			waarbij roepnaam wordt gesteld op "Jan"
+			waarbij achternaam wordt gesteld op "Klaassens"
+			waarbij geboortedatum wordt gesteld op 01-04-1968
+			waarbij geboorteplaats wordt gesteld op "Amsterdam"
+			waarbij adres wordt gesteld op "Keizersplantsoen"
+			waarbij huisnummer wordt gesteld op "67"
+			waarbij postcode wordt gesteld op "1095 TK"
+			waarbij woonplaats wordt gesteld op "Amsterdam"
+			waarbij paspoortnummer wordt gesteld op "123456"
+			waarbij identiteitskaartnummer wordt gesteld op "24680"
+			waarbij burgerlijke staat wordt gesteld op "gehuwd"
+ 			waarbij nationaliteit wordt gesteld op "NL"
+			waarbij nationaliteit datum sinds wordt gesteld op 01-01-2000
+			waarbij militair ambtenaar wordt gesteld op nee
 		waardoor de regel zal vuren
 		
 	- "testcase_002" met als invoer:
+		een werkgever
+			waarbij werkgeversidentificatie wordt gesteld op 9999
+		een werknemer
+			waarbij werknemersidentificatie wordt gesteld op 9999
 		waardoor de regel niet zal vuren
 	.
 

@@ -64,6 +64,30 @@ public class RegelSpraakBaseListener implements RegelSpraakListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterInvoer(RegelSpraakParser.InvoerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInvoer(RegelSpraakParser.InvoerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterToekennen(RegelSpraakParser.ToekennenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitToekennen(RegelSpraakParser.ToekennenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterWaarde(RegelSpraakParser.WaardeContext ctx) { }
 	/**
 	 * {@inheritDoc}

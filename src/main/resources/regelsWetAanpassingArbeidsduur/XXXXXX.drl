@@ -1,7 +1,7 @@
 package com.fokkenrood.WetAanpassingArbeidsduur
 
-import com.fokkenrood.drools.Aaaaaa;
-import com.fokkenrood.drools.Bbbbbb;
+import com.fokkenrood.drools.Werkgever;
+import com.fokkenrood.drools.Werknemer;
 
 rule "XXXXXX"
   when

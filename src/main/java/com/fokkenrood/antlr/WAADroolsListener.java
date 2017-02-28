@@ -10,15 +10,19 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import com.fokkenrood.antlr.RegelSpraakParser.InvoerContext;
 import com.fokkenrood.antlr.RegelSpraakParser.RegelContext;
 import com.fokkenrood.antlr.RegelSpraakParser.StatementsContext;
 import com.fokkenrood.antlr.RegelSpraakParser.TestcaseContext;
 import com.fokkenrood.antlr.RegelSpraakParser.TestgevalContext;
+import com.fokkenrood.antlr.RegelSpraakParser.ToekennenContext;
+import com.fokkenrood.drools.VertaalTabelLezer;
 
 
 public class WAADroolsListener extends RegelSpraakBaseListener {
 	private boolean							VERBOSE			= true;
 	private Calendar						TODAY			= Calendar.getInstance();
+	private VertaalTabelLezer				vertaler		= new VertaalTabelLezer();
 //	private Stack<String>					stackAndOr		= new Stack<String>();
 	private HashMap<String, ArrayList<String>> testcases 	= new HashMap<String, ArrayList<String>>();
 	private StringBuilder					drlWhen			= new StringBuilder();
@@ -38,12 +42,14 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 		System.out.println("------------------------------------------------");	
 		System.out.println("- Datum voor digitaal Tijdreizen is '"
 					+ new SimpleDateFormat("dd-MM-yyyy").format(TODAY.getTime()) + "'\n");
+		vertaler.openWerkboek("data\\VertaalTabel.xls", TODAY, VERBOSE);
 	}	// end enterStatements
 
 	
 	@Override
 	public void exitStatements(StatementsContext ctx) {
 		schrijfTestSuites();
+		vertaler.sluitWerkboek();
 		System.out.println("------------------------------------------------");
 		System.out.println("Einde vertaling!");
 	}	// end exitStatements
@@ -56,8 +62,8 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 		drlWhen.append("package com.fokkenrood.");
 		drlWhen.append(ctx.rs.getText());
 		drlWhen.append("\n\n");
-		drlWhen.append("import com.fokkenrood.drools.Aaaaaa;\n");
-		drlWhen.append("import com.fokkenrood.drools.Bbbbbb;\n\n");
+		drlWhen.append("import com.fokkenrood.drools.Werkgever;\n");
+		drlWhen.append("import com.fokkenrood.drools.Werknemer;\n\n");
 		drlWhen.append("rule \"");
 		drlWhen.append(ctx.rg.getText());
 		drlWhen.append("\"\n");
@@ -94,13 +100,16 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 		//	Imports:
 		javaCase.append("package com.fokkenrood.testcases." + ctx.rs.getText() + ";\n\n");
 		javaCase.append("import static org.junit.Assert.assertTrue;\n\n");
-		javaCase.append("import org.junit.Test;\n\n");
+		javaCase.append("import java.text.ParseException;\n");
+		javaCase.append("import java.text.SimpleDateFormat;\n");
 		javaCase.append("import java.util.Calendar;\n\n");
+		javaCase.append("import org.junit.Test;\n\n");
 		javaCase.append("import org.kie.api.KieServices;\n");
 		javaCase.append("import org.kie.api.runtime.KieContainer;\n");
 		javaCase.append("import org.kie.api.runtime.KieSession;\n\n");
-		javaCase.append("<[[Aaaaaa]]>import com.fokkenrood.drools.Aangifte;\n");
-		javaCase.append("<[[Bbbbbb]]>import com.fokkenrood.drools.Artikel;\n");
+		javaCase.append("<[[Werkgever]]>import com.fokkenrood.drools.Werkgever;\n");
+		javaCase.append("<[[Werknemer]]>import com.fokkenrood.drools.Werknemer;\n");
+		javaCase.append("\n");
 		//	Testcases class definition:
 		javaCase.append("public class ");
 		javaCase.append(ctx.tc.getText());
@@ -149,7 +158,7 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 		javaCase.append("\t@Test\n");
 		javaCase.append("\tpublic void ");
 		javaCase.append(ctx.tg.getText());
-		javaCase.append("() {\n");
+		javaCase.append("() throws ParseException {\n");
 	}	// end enterTestgeval
 
 
@@ -168,6 +177,50 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 	}	// end exitTestgeval
 
 	
+
+	@Override
+	public void enterInvoer(InvoerContext ctx) {
+		String object = ctx.obj.getText().substring(0, 1).toUpperCase() + ctx.obj.getText().substring(1);
+		int p = javaCase.indexOf("<[[" + object);
+		if (p > 0) { javaCase.delete(p, (p + object.length() + 6)); }
+		javaCase.append("\t\t");
+		javaCase.append(object);
+		javaCase.append(" ");
+		javaCase.append(ctx.obj.getText());
+		javaCase.append(" = new ");
+		javaCase.append(object);
+		javaCase.append("();\n");	
+	}	// end enterInvoer
+
+
+	@Override
+	public void exitInvoer(InvoerContext ctx) {
+		javaCase.append("\t\tksession.insert(");	
+		javaCase.append(ctx.obj.getText());	
+		javaCase.append(");\n");
+		javaCase.append("\n");
+	}	// end exitInvoer
+
+
+	@Override
+	public void exitToekennen(ToekennenContext ctx) {
+		String waarde = ctx.w.value;
+		String feit = vertaler.zoekFeit("FEITEN", ctx.f.signifier);
+		if (feit == null) { feit = ctx.f.signifier; }
+		javaCase.append("\t\t");
+		javaCase.append(ctx.obj);
+		javaCase.append(".set");		
+		javaCase.append(feit.substring(0, 1).toUpperCase());
+		javaCase.append(feit.substring(1));
+		javaCase.append("(");
+		if (waarde.startsWith("@@")) {
+			javaCase.append("new SimpleDateFormat(\"dd-MM-yyyy\").parse(\"" + waarde.substring(2) + "\")");	
+		} else {
+			javaCase.append(waarde);	
+		}	// end if
+		javaCase.append(");\n");
+}	// end exitToekennen
+
 
 	//	Private functions:
 	//	==================

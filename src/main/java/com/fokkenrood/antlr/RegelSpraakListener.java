@@ -48,6 +48,26 @@ public interface RegelSpraakListener extends ParseTreeListener {
 	 */
 	void exitTestgeval(RegelSpraakParser.TestgevalContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link RegelSpraakParser#invoer}.
+	 * @param ctx the parse tree
+	 */
+	void enterInvoer(RegelSpraakParser.InvoerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RegelSpraakParser#invoer}.
+	 * @param ctx the parse tree
+	 */
+	void exitInvoer(RegelSpraakParser.InvoerContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link RegelSpraakParser#toekennen}.
+	 * @param ctx the parse tree
+	 */
+	void enterToekennen(RegelSpraakParser.ToekennenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link RegelSpraakParser#toekennen}.
+	 * @param ctx the parse tree
+	 */
+	void exitToekennen(RegelSpraakParser.ToekennenContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link RegelSpraakParser#waarde}.
 	 * @param ctx the parse tree
 	 */
