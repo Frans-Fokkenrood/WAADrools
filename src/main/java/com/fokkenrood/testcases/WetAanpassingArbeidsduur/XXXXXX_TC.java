@@ -12,8 +12,9 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
-import com.fokkenrood.drools.Werkgever;
 import com.fokkenrood.drools.Werknemer;
+import com.fokkenrood.drools.Werkgever;
+import com.fokkenrood.drools.Arbeidsovereenkomst;
 
 public class XXXXXX_TC {
 	private int						count		= -1;
@@ -31,19 +32,8 @@ public class XXXXXX_TC {
 
 	@Test
 	public void testcase_001() throws ParseException {
-		Werkgever werkgever = new Werkgever();
-		werkgever.setWerkgeverID(2);
-		werkgever.setNaam("Philips");
-		werkgever.setAdres("Jan ten havestraat");
-		werkgever.setHuisnummer("12");
-		werkgever.setPostcode("1095 TK");
-		werkgever.setAantalWerknemers(12);
-		werkgever.setPeildatum(new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2017"));
-		werkgever.setMilitairenInDienst(false);
-		ksession.insert(werkgever);
-
 		Werknemer werknemer = new Werknemer();
-		werknemer.setWerknemerID(1);
+		werknemer.setWerknemerID(11);
 		werknemer.setBurgerservicenummer("111111111");
 		werknemer.setVoornamen("Jan");
 		werknemer.setRoepnaam("Jan");
@@ -62,6 +52,25 @@ public class XXXXXX_TC {
 		werknemer.setMilitairAmbtenaar(false);
 		ksession.insert(werknemer);
 
+		Werkgever werkgever = new Werkgever();
+		werkgever.setWerkgeverID(22);
+		werkgever.setNaam("Philips");
+		werkgever.setAdres("Jan ten havestraat");
+		werkgever.setHuisnummer("12");
+		werkgever.setPostcode("1095 TK");
+		werkgever.setAantalWerknemers(12);
+		werkgever.setPeildatum(new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2017"));
+		werkgever.setMilitairenInDienst(false);
+		ksession.insert(werkgever);
+
+		Arbeidsovereenkomst arbeidsovereenkomst = new Arbeidsovereenkomst();
+		arbeidsovereenkomst.setWerknemerID(11);
+		arbeidsovereenkomst.setWerkgeverID(22);
+		arbeidsovereenkomst.setDatumIndiensttreding(new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"));
+		arbeidsovereenkomst.setOvereenkomstGetekendOp(new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"));
+		arbeidsovereenkomst.setArbeidsduurperiode("een maand");
+		ksession.insert(arbeidsovereenkomst);
+
 		count = ksession.fireAllRules();
 		ksession.dispose();
 		assertTrue("Geen enkele regel heeft gevuurd", count > 0);
@@ -69,13 +78,18 @@ public class XXXXXX_TC {
 
 	@Test
 	public void testcase_002() throws ParseException {
+		Werknemer werknemer = new Werknemer();
+		werknemer.setWerknemerID(9997);
+		ksession.insert(werknemer);
+
 		Werkgever werkgever = new Werkgever();
-		werkgever.setWerkgeverID(9999);
+		werkgever.setWerkgeverID(9998);
 		ksession.insert(werkgever);
 
-		Werknemer werknemer = new Werknemer();
-		werknemer.setWerknemerID(9999);
-		ksession.insert(werknemer);
+		Arbeidsovereenkomst arbeidsovereenkomst = new Arbeidsovereenkomst();
+		arbeidsovereenkomst.setWerknemerID(9997);
+		arbeidsovereenkomst.setWerkgeverID(9998);
+		ksession.insert(arbeidsovereenkomst);
 
 		count = ksession.fireAllRules();
 		ksession.dispose();

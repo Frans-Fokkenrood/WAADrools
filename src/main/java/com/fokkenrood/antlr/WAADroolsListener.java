@@ -62,8 +62,10 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 		drlWhen.append("package com.fokkenrood.");
 		drlWhen.append(ctx.rs.getText());
 		drlWhen.append("\n\n");
+		drlWhen.append("import com.fokkenrood.drools.Werknemer;\n");
 		drlWhen.append("import com.fokkenrood.drools.Werkgever;\n");
-		drlWhen.append("import com.fokkenrood.drools.Werknemer;\n\n");
+		drlWhen.append("import com.fokkenrood.drools.Arbeidsovereenkomst;\n");
+		drlWhen.append("\n");
 		drlWhen.append("rule \"");
 		drlWhen.append(ctx.rg.getText());
 		drlWhen.append("\"\n");
@@ -107,8 +109,9 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 		javaCase.append("import org.kie.api.KieServices;\n");
 		javaCase.append("import org.kie.api.runtime.KieContainer;\n");
 		javaCase.append("import org.kie.api.runtime.KieSession;\n\n");
-		javaCase.append("<[[Werkgever]]>import com.fokkenrood.drools.Werkgever;\n");
 		javaCase.append("<[[Werknemer]]>import com.fokkenrood.drools.Werknemer;\n");
+		javaCase.append("<[[Werkgever]]>import com.fokkenrood.drools.Werkgever;\n");
+		javaCase.append("<[[Werkgever]]>import com.fokkenrood.drools.Arbeidsovereenkomst;\n");
 		javaCase.append("\n");
 		//	Testcases class definition:
 		javaCase.append("public class ");
@@ -214,7 +217,9 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 		javaCase.append(feit.substring(1));
 		javaCase.append("(");
 		if (waarde.startsWith("@@")) {
-			javaCase.append("new SimpleDateFormat(\"dd-MM-yyyy\").parse(\"" + waarde.substring(2) + "\")");	
+			javaCase.append("new SimpleDateFormat(\"dd-MM-yyyy\").parse(\"");
+			javaCase.append(ctx.w.getText());
+			javaCase.append("\")");	
 		} else {
 			javaCase.append(waarde);	
 		}	// end if

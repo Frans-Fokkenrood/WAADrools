@@ -7,17 +7,8 @@ Regel "XXXXXX" in "WetAanpassingArbeidsduur" luidt:
 Testcase "XXXXXX_TC" in "WetAanpassingArbeidsduur" omvat de volgende testgevallen:
 
 	- "testcase_001" met als invoer:
-		een werkgever 
-			waarbij werkgeversidentificatie wordt gesteld op 2
-			waarbij naam wordt gesteld op "Philips"
-			waarbij adres wordt gesteld op "Jan ten havestraat"
-			waarbij huisnummer wordt gesteld op "12"
-			waarbij postcode wordt gesteld op "1095 TK"
-			waarbij aantal werknemers wordt gesteld op 12
-			waarbij peildatum wordt gesteld op 01-01-2017
-			waarbij militairen in dienst wordt gesteld op nee
 		een werknemer
-			waarbij werknemersidentificatie wordt gesteld op 1
+			waarbij werknemersidentificatie wordt gesteld op 11
 			waarbij burgerservicenummer wordt gesteld op "111111111"
 			waarbij voornamen wordt gesteld op "Jan"
 			waarbij roepnaam wordt gesteld op "Jan"
@@ -34,13 +25,31 @@ Testcase "XXXXXX_TC" in "WetAanpassingArbeidsduur" omvat de volgende testgevalle
  			waarbij nationaliteit wordt gesteld op "NL"
 			waarbij nationaliteit datum sinds wordt gesteld op 01-01-2000
 			waarbij militair ambtenaar wordt gesteld op nee
+		een werkgever 
+			waarbij werkgeversidentificatie wordt gesteld op 22
+			waarbij naam wordt gesteld op "Philips"
+			waarbij adres wordt gesteld op "Jan ten havestraat"
+			waarbij huisnummer wordt gesteld op "12"
+			waarbij postcode wordt gesteld op "1095 TK"
+			waarbij aantal werknemers wordt gesteld op 12
+			waarbij peildatum wordt gesteld op 01-01-2017
+			waarbij militairen in dienst wordt gesteld op nee
+		een arbeidsovereenkomst
+			waarbij werknemersidentificatie wordt gesteld op 11
+			waarbij werkgeversidentificatie wordt gesteld op 22
+			waarbij datum indiensttreding wordt gesteld op 01-01-2000
+			waarbij overeenkomst getekend op wordt gesteld op 01-01-2000
+			waarbij arbeidsduurperiode in overeenkomst wordt gesteld op "een maand"
 		waardoor de regel zal vuren
 		
 	- "testcase_002" met als invoer:
-		een werkgever
-			waarbij werkgeversidentificatie wordt gesteld op 9999
 		een werknemer
-			waarbij werknemersidentificatie wordt gesteld op 9999
+			waarbij werknemersidentificatie wordt gesteld op 9997
+		een werkgever
+			waarbij werkgeversidentificatie wordt gesteld op 9998
+		een arbeidsovereenkomst
+			waarbij werknemersidentificatie wordt gesteld op 9997
+			waarbij werkgeversidentificatie wordt gesteld op 9998
 		waardoor de regel niet zal vuren
 	.
 

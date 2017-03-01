@@ -37,6 +37,7 @@ invoer
 	(	EEN
 		(	obj=WERKGEVER
 		|	obj=WERKNEMER
+		|	obj=ARBEIDSOVEREENKOMST
 		)
 		(	toekennen[$obj.text]
 		)+
@@ -78,6 +79,7 @@ feit returns [String signifier]
 	(	WOORD										{ $signifier  = $WOORD.text; }
 		(	WOORD									{ $signifier += (" " + $WOORD.text); }
 		|	IN										{ $signifier += (" in"); }
+		|	OP										{ $signifier += (" op"); }
 		)*
 	) 
 	;
@@ -95,6 +97,7 @@ TEKST:					QUOTE .*? QUOTE					{ setText(getText().replaceAll("\"","")); } ;
 
 AAN:					'aan' ;
 ALS:					'als' ;
+ARBEIDSOVEREENKOMST:	'arbeidsovereenkomst' ;
 DAN:					'dan' ;
 DDE:					'De' ;
 DE:						'de' ;
