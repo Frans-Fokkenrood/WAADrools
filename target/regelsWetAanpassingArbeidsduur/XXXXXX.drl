@@ -1,0 +1,10 @@
+package com.fokkenrood.WetAanpassingArbeidsduur
+
+import com.fokkenrood.drools.Werknemer;
+import com.fokkenrood.drools.Werkgever;
+import com.fokkenrood.drools.Arbeidsovereenkomst;
+
+rule "XXXXXX"
+  when
+  then
+end

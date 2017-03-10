@@ -4,7 +4,7 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
-public class KieSessieVervoer {
+public class KieSessieWAA {
 
 	public static void main(String[] args) {
 		System.out.println("Start KIE sessie voor Wet Aanpassing Arbeidsduur...");

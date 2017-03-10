@@ -209,7 +209,6 @@ public class WAADroolsListener extends RegelSpraakBaseListener {
 	public void exitToekennen(ToekennenContext ctx) {
 		String waarde = ctx.w.value;
 		String feit = vertaler.zoekFeit("FEITEN", ctx.f.signifier);
-		if (feit == null) { feit = ctx.f.signifier; }
 		javaCase.append("\t\t");
 		javaCase.append(ctx.obj);
 		javaCase.append(".set");		

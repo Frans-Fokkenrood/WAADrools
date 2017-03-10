@@ -42,7 +42,7 @@ public class VertaalTabelLezer {
 		if (verbose) {
 			System.out.println("- Feit '" + sleutel + "' wordt NIET vertaald!");
 		}	// end if
-		return null;
+		return sleutel;
 	}	// end zoekFeit
 	
 	
