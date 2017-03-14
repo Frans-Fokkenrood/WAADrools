@@ -40,6 +40,28 @@ Testcase "XXXXXX_TC" in "WetAanpassingArbeidsduur" omvat de volgende testgevalle
 			waarbij datum indiensttreding wordt gesteld op 01-01-2000
 			waarbij overeenkomst getekend op wordt gesteld op 01-01-2000
 			waarbij arbeidsduurperiode in overeenkomst wordt gesteld op "een maand"
+		een arbeidsduur
+			waarbij arbeidsovereenkomst wordt gesteld op "11,22"
+			waarbij datum indienen verzoek wordt gesteld op 2001-01-01
+			waarbij datum vorig versie van het verzoek wordt gesteld op leeg
+			waarbij datum overleg plegen wordt gesteld op leeg
+			waarbij datum inwilligen verzoek wordt gesteld op leeg
+			waarbij datum afwijzen verzoek wordt gesteld op leeg
+			waarbij datum vaststellen spreiding wordt gesteld op leeg
+			waarbij datum wijzigen van de spreiding wordt gesteld op leeg
+			waarbij datum mededelen beslissing wordt gesteld op leeg
+			waarbij datum mededelen redenen wordt gesteld op leeg
+			waarbij werkgever heeft een belang wordt gesteld op nee
+			waarbij beoogde ingangsdatum van de aanpassing wordt gesteld op 2001-01-01
+			waarbij omvang van de aanpassing wordt gesteld op -4,0
+			waarbij gewenste spreiding wordt gesteld op "maandag tot vrijdag 5x8"
+			waarbij schriftelijk ingediend wordt gesteld op ja
+			waarbij samentelling volgens werknemer wordt gesteld op 70
+			waarbij samentelling volgens werkgever wordt gesteld op 120
+			waarbij redenen voor afwijzing wordt gesteld op "geen"
+			waarbij zwaarwegende belangen tegen het inwilligen wordt gesteld op nee
+			waarbij feiten bij vermindering wordt gesteld op "geen"
+			waarbij feiten bij vermeerdering wordt gesteld op "geen"
 		waardoor de regel zal vuren
 		
 	- "testcase_002" met als invoer:
@@ -50,6 +72,9 @@ Testcase "XXXXXX_TC" in "WetAanpassingArbeidsduur" omvat de volgende testgevalle
 		een arbeidsovereenkomst
 			waarbij werknemersidentificatie wordt gesteld op 9997
 			waarbij werkgeversidentificatie wordt gesteld op 9998
+		een arbeidsduur
+			waarbij arbeidsovereenkomst wordt gesteld op "11,22"
+			waarbij datum indienen verzoek wordt gesteld op 2001-01-01
 		waardoor de regel niet zal vuren
 	.
 

@@ -50,7 +50,6 @@ public class MyKieService {
 	private static void writeResponse(BufferedWriter writer) throws IOException {
 		if (request.startsWith("JSON:")) {
 			writer.write("<h2>de ontvangen json string was helemaal OK!</h2>\n");
-			writer.write("<p>" + request.substring(5) + "</p>\n");
 			writer.write("\n");
 			return;
 		}	// end if
